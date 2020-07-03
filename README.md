@@ -1,2 +1,2 @@
-# imersaojs
-Desenvolvimento de um jogo com JavaScript 
+# imersaogamedev
+certificado da Imersão Gamedev JavaScript 
