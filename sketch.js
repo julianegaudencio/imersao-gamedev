@@ -1,26 +1,43 @@
-let imagemCenario;
-let imagemPersonagem;
-let cenario;
-let somdoJogo;
-let personagem;
-
 function preload() {
-    imagemCenario = loadImage('imagens/cenario/floresta.png');
-    imagemPersonagem = loadImage('imagens/personagem/correndo.png');
-    somdoJogo = loadSound('sons/trilha_jogo.mp3');
+  imagemCenario = loadImage('imagens/cenario/floresta.png');
+  imagemTelaInicial = loadImage('imagens/assets/telaInicial.png');
+  imagemVida = loadImage('imagens/assets/heart.png');
+  imagemGameOver = loadImage('imagens/assets/game-over.png');
+  imagemPersonagem = loadImage('imagens/personagem/correndo.png');
+  imagemInimigo = loadImage('imagens/inimigos/gotinha.png');
+  imagemInimigoVoador = loadImage('imagens/inimigos/gotinha-voadora.png');
+  imagemInimigoGrande = loadImage('imagens/inimigos/troll.png');
+
+  fonteTelaInicial = loadFont('imagens/assets/fonteTelaInicial.otf');
+
+  fita = loadJSON('fita/fita.json');
+  
+  somDoJogo = loadSound('sons/trilha_jogo.mp3');
+  somDoPulo = loadSound('sons/somPulo.mp3');
 }
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
-    cenario = new Cenario(imagemCenario, 3);
-    personagem = new Personagem(imagemPersonagem);
-    frameRate(40);
-    somdoJogo.loop();
+  createCanvas(windowWidth, windowHeight);
+  telaInicial = new TelaInicial()
+  jogo = new Jogo()
+  cenas = {
+    telaInicial,
+    jogo
+  }
+  jogo.setup()
+  botaoGerenciador = new BotaoGerenciador('Iniciar', width / 2, height / 2)
+
+  frameRate(40)
+  somDoJogo.loop();
+}
+
+function keyPressed() {
+  jogo.keyPressed(key)
 }
 
 function draw() {
-    cenario.exibe();
-    cenario.move();
-  
-    personagem.exibe();
+  // if(cenaAtual === 'jogo') {
+  //   jogo.draw()
+  // }
+  cenas[cenaAtual].draw()
 }
