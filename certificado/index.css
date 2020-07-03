@@ -106,4 +106,5 @@ iframe {
 
 .jogo {
   font-weight: bold;
+  color: var(--blue);
 }
